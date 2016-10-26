@@ -1,6 +1,6 @@
-#include <iostream>;
-#include <string.h>;
-#include "Media.h";
+#include <iostream>
+#include <string.h>
+#include "Media.h"
 
 using namespace std;
 
@@ -14,15 +14,15 @@ Media::Media(){
   director = "none";
 }
 
-string* Media::getTitle() {
+char* Media::getTitle() {
   return title;
 }
 
-string* Media::getPublisher() {
+char* Media::getPublisher() {
   return publisher;
 }
 
-string* Media::getRating() {
+char* Media::getRating() {
   return rating;
 }
 
@@ -30,15 +30,15 @@ int Media::getYear(){
   return year;
 }
 
-string* Media::getArtist() {
+char* Media::getArtist() {
   return artist;
 }
 
-string* Media::getDuration() {
+char* Media::getDuration() {
   return duration;
 }
 
-string* Media::getDirector() {
+char* Media::getDirector() {
   return director;
 }
 

@@ -1,3 +1,6 @@
+#ifndef MEDIA_H
+#define MEDIA_H
+
 #include <iostream>
 #include <string.h>
 
@@ -6,19 +9,21 @@ using namespace std;
 class Media {
  public:
   Media();
-  string* getTitle();
-  string* getPublisher();
-  string* getRating();
-  int getYear;
-  string* getArtist();
-  string* getDuration();
-  string* getDirector();
- private:
-  string* title;
-  string* publisher;
-  string* rating;
+  char* getTitle();
+  char* getPublisher();
+  char* getRating();
+  int getYear();
+  char* getArtist();
+  char* getDuration();
+  char* getDirector();
+ protected:
+  char* title;
+  char* publisher;
+  char* rating;
   int year;
-  string* artist;
-  string* duration;
-  string* director;
+  char* artist;
+  char* duration;
+  char* director;
 };
+
+#endif
