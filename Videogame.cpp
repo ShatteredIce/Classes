@@ -5,7 +5,14 @@
 using namespace std;
 
 Videogame::Videogame(){
-  cout << "hi" << endl;
+}
+
+char* Videogame::getPublisher() {
+  return publisher;
+}
+
+char* Videogame::getRating() {
+  return rating;
 }
 
 void Videogame::setTitle(char* in) {

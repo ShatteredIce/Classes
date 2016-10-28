@@ -4,41 +4,38 @@
 
 using namespace std;
 
+
 Media::Media(){
-  title = "none";
-  publisher = "none";
-  rating = "none";
+  //char none[] = "none";
+  strcpy(title, "none");
   year = 0;
-  artist = "none";
-  duration = "none";
-  director = "none";
 }
 
 char* Media::getTitle() {
   return title;
 }
 
-char* Media::getPublisher() {
-  return publisher;
+void Media::getPublisher() {
+  return;
 }
 
-char* Media::getRating() {
-  return rating;
+void Media::getRating() {
+  return;
 }
 
 int Media::getYear(){
   return year;
 }
 
-char* Media::getArtist() {
-  return artist;
+void Media::getArtist() {
+  return;
 }
 
-char* Media::getDuration() {
-  return duration;
+void Media::getDuration() {
+  return;
 }
 
-char* Media::getDirector() {
-  return director;
+void Media::getDirector() {
+  return;
 }
 
