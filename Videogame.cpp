@@ -5,6 +5,8 @@
 using namespace std;
 
 Videogame::Videogame(){
+  publisher = new char[81];
+  rating = new char[81];
 }
 
 char* Videogame::getPublisher() {
@@ -16,17 +18,22 @@ char* Videogame::getRating() {
 }
 
 void Videogame::setTitle(char* in) {
-  title = in;
+  strcpy(title,in);
 }
 
-void Videogame::setYear(int in){
-  year = in;
+void Videogame::setYear(char* in){
+  strcpy(year,in);
 }
 
 void Videogame::setPublisher(char* in){
-  publisher = in;
+  strcpy(publisher,in);
 }
 
 void Videogame::setRating(char* in){
-  rating = in;
+  strcpy(rating,in);
+}
+
+void Videogame::display(){
+  cout << "Videogame: " << title << " Year: " << year <<
+    " Publisher: " << publisher << " Rating: " << rating << endl; 
 }

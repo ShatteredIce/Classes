@@ -12,13 +12,14 @@ class Media {
   char* getTitle();
   void getPublisher();
   void getRating();
-  int getYear();
+  char* getYear();
   void getArtist();
   void getDuration();
   void getDirector();
+  void display();
  protected:
   char* title;
-  int year;
+  char* year;
   char* artist;
   char* duration;
   char* director;

@@ -9,9 +9,10 @@ class Videogame : public Media {
   char* getPublisher();
   char* getRating();
   void setTitle(char*);
-  void setYear(int);
+  void setYear(char*);
   void setPublisher(char*);
   void setRating(char*);
+  void display();
  private:
   char* publisher;
   char* rating;

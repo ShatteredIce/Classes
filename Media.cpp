@@ -7,8 +7,8 @@ using namespace std;
 
 Media::Media(){
   //char none[] = "none";
-  strcpy(title, "none");
-  year = 0;
+  title = new char[81];
+  year = new char[81];
 }
 
 char* Media::getTitle() {
@@ -23,7 +23,7 @@ void Media::getRating() {
   return;
 }
 
-int Media::getYear(){
+char* Media::getYear(){
   return year;
 }
 
@@ -39,3 +39,6 @@ void Media::getDirector() {
   return;
 }
 
+void Media::display() {
+  cout << "random media" << endl;
+}

@@ -13,8 +13,9 @@ int main()
   vector<Media*> database;
   vector<Media*> * databasePointer = & database;
   addVideogame(databasePointer);
+  addVideogame(databasePointer);
   for(int a = 0; a < database.size(); a++){
-    cout << database[a]->getTitle() << endl;
+    database[a]->display();
   }
   
   return 0;
@@ -22,21 +23,22 @@ int main()
 
 void addVideogame(vector<Media*>* database){
   Videogame* videogame = new Videogame();
-  char input[81];
-  int yearInput = '0';
+  char titleInput[81];
+  char publisherInput[81];
+  char ratingInput[81];
+  char yearInput[81];
   cout << "-----ADDING VIDEOGAME-----" << endl;
   cout << "Title: ";
-  cin.getline(input, 81);
-  videogame->setTitle(input);
+  cin.getline(titleInput, 81);
+  videogame->setTitle(titleInput);
   cout << "Publisher: ";
-  cin.getline(input, 81);
-  videogame->setPublisher(input);
+  cin.getline(publisherInput, 81);
+  videogame->setPublisher(publisherInput);
   cout << "Rating: ";
-  cin.getline(input, 81);
-  videogame->setRating(input);
+  cin.getline(ratingInput, 81);
+  videogame->setRating(ratingInput);
   cout << "Year: ";
-  cin >> yearInput;
-  cin.ignore(80,'\n');
+  cin.getline(yearInput,81);
   videogame->setYear(yearInput);
   database->push_back(videogame);
 }
