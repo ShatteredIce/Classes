@@ -10,19 +10,13 @@ class Media {
  public:
   Media();
   char* getTitle();
-  void getPublisher();
-  void getRating();
   char* getYear();
-  void getArtist();
-  void getDuration();
-  void getDirector();
-  void display();
+  void setId(int);
+  int getId();
  protected:
+  int id;
   char* title;
   char* year;
-  char* artist;
-  char* duration;
-  char* director;
 };
 
 #endif

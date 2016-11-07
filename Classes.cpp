@@ -15,7 +15,9 @@ int main()
   addVideogame(databasePointer);
   addVideogame(databasePointer);
   for(int a = 0; a < database.size(); a++){
-    database[a]->display();
+    if(database[a]->getId() == 1){
+      ((Videogame*) database[a])->display();
+    }
   }
   
   return 0;
@@ -40,5 +42,6 @@ void addVideogame(vector<Media*>* database){
   cout << "Year: ";
   cin.getline(yearInput,81);
   videogame->setYear(yearInput);
+  videogame->setId(1);
   database->push_back(videogame);
 }

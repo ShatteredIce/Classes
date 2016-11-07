@@ -9,36 +9,22 @@ Media::Media(){
   //char none[] = "none";
   title = new char[81];
   year = new char[81];
+  id = 0;
 }
 
 char* Media::getTitle() {
   return title;
 }
 
-void Media::getPublisher() {
-  return;
-}
-
-void Media::getRating() {
-  return;
-}
 
 char* Media::getYear(){
   return year;
 }
 
-void Media::getArtist() {
-  return;
+void Media::setId(int newid){
+  id = newid;
 }
 
-void Media::getDuration() {
-  return;
-}
-
-void Media::getDirector() {
-  return;
-}
-
-void Media::display() {
-  cout << "random media" << endl;
+int Media::getId(){
+  return id;
 }
