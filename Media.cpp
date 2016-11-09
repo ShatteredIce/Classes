@@ -28,3 +28,11 @@ void Media::setId(int newid){
 int Media::getId(){
   return id;
 }
+
+void Media::setTitle(char* in) {
+  strcpy(title,in);
+}
+
+void Media::setYear(char* in){
+  strcpy(year,in);
+}

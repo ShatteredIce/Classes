@@ -17,14 +17,6 @@ char* Videogame::getRating() {
   return rating;
 }
 
-void Videogame::setTitle(char* in) {
-  strcpy(title,in);
-}
-
-void Videogame::setYear(char* in){
-  strcpy(year,in);
-}
-
 void Videogame::setPublisher(char* in){
   strcpy(publisher,in);
 }

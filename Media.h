@@ -11,6 +11,8 @@ class Media {
   Media();
   char* getTitle();
   char* getYear();
+  void setTitle(char*);
+  void setYear(char*);
   void setId(int);
   int getId();
  protected:

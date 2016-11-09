@@ -3,15 +3,18 @@
 
 using namespace std;
 
-class Videogame : public Media {
+class Music : public Media {
  public:
-  Videogame();
+  Music();
   char* getPublisher();
-  char* getRating();
+  char* getDuration();
+  char* getArtist();
   void setPublisher(char*);
-  void setRating(char*);
+  void setDuration(char*);
+  void setArtist(char*);
   void display();
  private:
   char* publisher;
-  char* rating;
+  char* duration;
+  char* artist;
 };
