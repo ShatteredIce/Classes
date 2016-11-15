@@ -16,18 +16,120 @@ int main()
 {
   vector<Media*> database;
   vector<Media*> * databasePointer = & database;
-  addVideogame(databasePointer);
-  addMovie(databasePointer);
-  addMusic(databasePointer);
-  for(int a = 0; a < database.size(); a++){
-    if(database[a]->getId() == 1){
-      ((Videogame*) database[a])->display();
+
+  //variable setup
+  bool running = true;
+  bool searchMatch = false;
+  char input[81];
+  char add[4] = {'A','D','D','\0'};
+  char vid[4] = {'V','I','D','\0'};
+  char mus[4] = {'M','U','S','\0'};
+  char mov[4] = {'M','O','V','\0'};
+  char yr[3] =  {'Y','R','\0'};
+  char search[7] = {'S','E','A','R','C','H','\0'};
+  char print[6] = {'P','R','I','N','T','\0'};
+  char quit[5] = {'Q','U','I','T','\0'};
+
+  cout << endl << "Welcome to the totally useless Media Database!" << endl;
+  cout << "Commands: add, print, search, and quit" << endl << endl;
+  
+  while(running){
+    fill(input, input + 81, ' ');
+    cout << "Awaiting input: ";
+    cin.getline(input, 81);
+    for(int i = 0; i < strlen(input); i++){
+      input[i] = toupper(input[i]);
     }
-    else if(database[a]->getId() == 2){
-      ((Music*) database[a])->display();
+    //if input = QUIT, then end the program
+    if(strcmp(input, quit) == 0){
+      cout << "Program Terminated." << endl;
+      running = false;
     }
-    else if(database[a]->getId() == 3){
-      ((Movie*) database[a])->display();
+    else if(strcmp(input, add) == 0){
+      fill(input, input + 81, ' ');
+      cout << "What type of media do you want to add? (vid, mus, mov): ";
+      cin.getline(input, 81);
+      for(int i = 0; i < strlen(input); i++){
+	input[i] = toupper(input[i]);
+      }
+      if(strcmp(input, vid) == 0){
+	addVideogame(databasePointer);
+      }
+      else if(strcmp(input, mus) == 0){
+	addMusic(databasePointer);
+      }
+      else if(strcmp(input, mov) == 0){
+	addMovie(databasePointer);
+      }
+    }
+    else if(strcmp(input, print) == 0){
+      cout << endl << "-----Media Database----- " << endl << endl;
+      if(database.size() == 0){
+	cout << "No media found." << endl;
+      }
+      for(int a = 0; a < database.size(); a++){
+	if(database[a]->getId() == 1){
+	  ((Videogame*) database[a])->display();
+	}
+	else if(database[a]->getId() == 2){
+	  ((Music*) database[a])->display();
+	}
+	else if(database[a]->getId() == 3){
+	  ((Movie*) database[a])->display();
+	}
+      }
+      cout << endl << "------End of List-------" << endl << endl;
+    }
+    else if(strcmp(input, search) == 0){
+      fill(input, input + 81, ' ');
+      cout << "Do you wish to search by title or year? (t or yr): ";
+      cin.getline(input, 81);
+      for(int i = 0; i < strlen(input); i++){
+	input[i] = toupper(input[i]);
+      }
+      if(strcmp(input, "T") == 0){
+	fill(input, input + 81, ' ');
+	cout << "Enter title: ";
+	cin.getline(input, 81);
+	cout << endl << "----Search by title: " << input << "----" << endl;
+	for(int a = 0; a < database.size(); a++){
+	  if(strcmp(input, database[a]->getTitle()) == 0){
+	    searchMatch = true;
+	    if(database[a]->getId() == 1){
+	      ((Videogame*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 2){
+	      ((Music*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 3){
+	      ((Movie*) database[a])->display();
+	    }
+	  }
+	}
+      }
+      else if(strcmp(input, yr) == 0){
+	fill(input, input + 81, ' ');
+	cout << "Enter year: ";
+	cin.getline(input, 81);
+	cout << endl << "----Search by year: " << input << "----" << endl;
+	for(int a = 0; a < database.size(); a++){
+	  if(strcmp(input, database[a]->getYear()) == 0){
+	    if(database[a]->getId() == 1){
+	      ((Videogame*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 2){
+	      ((Music*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 3){
+	      ((Movie*) database[a])->display();
+	    }
+	  }
+	}
+      }
+      if(!searchMatch){
+	cout << "No matches found." << endl << endl;
+      }
+      cout << "-----End of Search-----" << endl;
     }
   }
   
@@ -40,7 +142,7 @@ void addVideogame(vector<Media*>* database){
   char publisherInput[81];
   char ratingInput[81];
   char yearInput[81];
-  cout << "-----ADDING VIDEOGAME-----" << endl;
+  cout << endl << "-----ADDING VIDEOGAME-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   videogame->setTitle(titleInput);
@@ -55,6 +157,7 @@ void addVideogame(vector<Media*>* database){
   videogame->setYear(yearInput);
   videogame->setId(1);
   database->push_back(videogame);
+  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
 }
 
 void addMusic(vector<Media*>* database){
@@ -64,7 +167,7 @@ void addMusic(vector<Media*>* database){
   char durationInput[81];
   char publisherInput[81];
   char yearInput[81];
-  cout << "-----ADDING MUSIC-----" << endl;
+  cout << endl << "-----ADDING MUSIC-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   music->setTitle(titleInput);
@@ -82,6 +185,7 @@ void addMusic(vector<Media*>* database){
   music->setYear(yearInput);
   music->setId(2);
   database->push_back(music);
+  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
 }
 
 void addMovie(vector<Media*>* database){
@@ -91,7 +195,7 @@ void addMovie(vector<Media*>* database){
   char durationInput[81];
   char ratingInput[81];
   char yearInput[81];
-  cout << "-----ADDING MOVIE-----" << endl;
+  cout << endl << "-----ADDING MOVIE-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   movie->setTitle(titleInput);
@@ -109,4 +213,5 @@ void addMovie(vector<Media*>* database){
   movie->setYear(yearInput);
   movie->setId(3);
   database->push_back(movie);
+  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
 }
