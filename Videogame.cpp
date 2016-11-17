@@ -4,9 +4,16 @@
 
 using namespace std;
 
+//Videogame class for Classes.cpp
+//A child of Media.cpp
+
 Videogame::Videogame(){
   publisher = new char[81];
   rating = new char[81];
+}
+
+Videogame::~Videogame() {
+  cout << "Object is being deleted" << endl;
 }
 
 char* Videogame::getPublisher() {

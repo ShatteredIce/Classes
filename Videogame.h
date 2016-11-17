@@ -3,9 +3,12 @@
 
 using namespace std;
 
+//Header file for Videogame.cpp 
+
 class Videogame : public Media {
  public:
   Videogame();
+  ~Videogame();
   char* getPublisher();
   char* getRating();
   void setPublisher(char*);

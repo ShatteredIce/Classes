@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Music.h"
 
-
 using namespace std;
+
+//Music class for Classes.cpp
+//A child of Media.cpp
 
 Music::Music(){
   publisher = new char[81];

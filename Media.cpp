@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//Media class for Classes.cpp
 
 Media::Media(){
   //char none[] = "none";

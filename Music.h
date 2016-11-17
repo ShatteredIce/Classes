@@ -3,6 +3,8 @@
 
 using namespace std;
 
+//Header file for Music.cpp
+
 class Music : public Media {
  public:
   Music();

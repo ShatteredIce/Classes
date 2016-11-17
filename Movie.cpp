@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Movie.h"
 
-
 using namespace std;
+
+//Movie class for Classes.cpp
+//A child of Media.cpp
 
 Movie::Movie(){
   director = new char[81];
