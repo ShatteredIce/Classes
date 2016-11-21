@@ -149,6 +149,75 @@ int main()
 	cout << endl << "-----End of Search-----" << endl << endl;
       }
     }
+    else if(strcmp(input, del) == 0){
+      fill(input, input + 81, ' ');
+      cout << "Do you wish to delete by title or year? (t or yr): ";
+      cin.getline(input, 81);
+      for(int i = 0; i < strlen(input); i++){
+	input[i] = toupper(input[i]);
+      }
+      //Delete by title
+      if(strcmp(input, "T") == 0){
+	fill(input, input + 81, ' ');
+	cout << "Enter title: ";
+	cin.getline(input, 81);
+	cout << endl << "----Delete by title: " << input << "----" << endl << endl;
+	for(int a = 0; a < database.size(); a++){
+	  if(strcmp(input, database[a]->getTitle()) == 0){
+	    searchMatch = true;
+	    if(database[a]->getId() == 1){
+	      ((Videogame*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 2){
+	      ((Music*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 3){
+	      ((Movie*) database[a])->display();
+	    }
+	  }
+	}
+	
+	if(!searchMatch){
+	  cout << "No matches found." << endl;
+	}
+	else{
+	  fill(input, input + 81, ' ');
+	  cout << "Do you wish to delete by title or year? (t or yr): ";
+	  cin.getline(input, 81);
+	  
+	}
+	searchMatch = false;
+	cout << endl << "-----End of Delete-----" << endl << endl;
+
+      }
+      //Search for year, print all matches or tell the user they are no matches
+      else if(strcmp(input, yr) == 0){
+	fill(input, input + 81, ' ');
+	cout << "Enter year: ";
+	cin.getline(input, 81);
+	cout << endl << "----Search by year: " << input << "----" << endl << endl;
+	for(int a = 0; a < database.size(); a++){
+	  if(strcmp(input, database[a]->getYear()) == 0){
+	    searchMatch = true;
+	    if(database[a]->getId() == 1){
+	      ((Videogame*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 2){
+	      ((Music*) database[a])->display();
+	    }
+	    else if(database[a]->getId() == 3){
+	      ((Movie*) database[a])->display();
+	    }
+	  }
+	}
+	if(!searchMatch){
+	  cout << "No matches found." << endl;
+	}
+	searchMatch = false;
+	cout << endl << "-----End of Search-----" << endl << endl;
+      }
+      
+    }
   }
   
   return 0;
