@@ -24,6 +24,8 @@ int main()
   bool running = true;
   bool searchMatch = false;
   char input[81];
+  char confirmDel[81];
+  int delCount = 0;
   char add[4] = {'A','D','D','\0'};
   char vid[4] = {'V','I','D','\0'};
   char mus[4] = {'M','U','S','\0'};
@@ -35,8 +37,9 @@ int main()
   char quit[5] = {'Q','U','I','T','\0'};
 
   cout << endl << "Welcome to the totally useless Media Database!" << endl;
-  cout << "Commands: add, print, search, and quit" << endl << endl;
-  
+  cout << "Commands: add, print, search, delete, and quit" << endl << endl;
+
+  //While user has not entered 'quit', keep prompting user for input
   while(running){
     fill(input, input + 81, ' ');
     cout << "Awaiting input: ";
@@ -83,6 +86,9 @@ int main()
 	}
 	else if(database[a]->getId() == 3){
 	  ((Movie*) database[a])->display();
+	}
+	else{
+	  cout << database[a] << endl;
 	}
       }
       cout << endl << "------End of List-------" << endl << endl;
@@ -149,6 +155,7 @@ int main()
 	cout << endl << "-----End of Search-----" << endl << endl;
       }
     }
+    //If input = DELETE, prompt the user if they want to delete by title or year
     else if(strcmp(input, del) == 0){
       fill(input, input + 81, ' ');
       cout << "Do you wish to delete by title or year? (t or yr): ";
@@ -165,6 +172,7 @@ int main()
 	for(int a = 0; a < database.size(); a++){
 	  if(strcmp(input, database[a]->getTitle()) == 0){
 	    searchMatch = true;
+	    delCount++;
 	    if(database[a]->getId() == 1){
 	      ((Videogame*) database[a])->display();
 	    }
@@ -180,25 +188,50 @@ int main()
 	if(!searchMatch){
 	  cout << "No matches found." << endl;
 	}
+	//Confirm that the user wants to delete these items
 	else{
-	  fill(input, input + 81, ' ');
-	  cout << "Do you wish to delete by title or year? (t or yr): ";
-	  cin.getline(input, 81);
-	  
+	  fill(confirmDel, confirmDel + 81, ' ');
+	  cout << endl << "Do you wish to delete these items? (y or n): ";
+	  cin.getline(confirmDel, 81);	  
+	  for(int i = 0; i < strlen(confirmDel); i++){
+	    confirmDel[i] = toupper(confirmDel[i]);
+	  }
+	  if(strcmp(confirmDel, "Y") == 0 || strcmp(confirmDel, "YES") == 0){
+	    for(int del = 0; del < delCount; del++){
+	      for(int a = 0; a < database.size(); a++){
+		if(strcmp(input, database[a]->getTitle()) == 0){
+		  if(database[a]->getId() == 1){
+		    delete ((Videogame*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  else if(database[a]->getId() == 2){
+		    delete ((Music*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  else if(database[a]->getId() == 3){
+		    delete ((Movie*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  break;
+		}
+	      }
+	    }
+	  }
 	}
 	searchMatch = false;
+	delCount = 0;
 	cout << endl << "-----End of Delete-----" << endl << endl;
-
       }
-      //Search for year, print all matches or tell the user they are no matches
+      //Delete by year
       else if(strcmp(input, yr) == 0){
 	fill(input, input + 81, ' ');
 	cout << "Enter year: ";
 	cin.getline(input, 81);
-	cout << endl << "----Search by year: " << input << "----" << endl << endl;
+	cout << endl << "----Delete by year: " << input << "----" << endl << endl;
 	for(int a = 0; a < database.size(); a++){
 	  if(strcmp(input, database[a]->getYear()) == 0){
 	    searchMatch = true;
+	    delCount++;
 	    if(database[a]->getId() == 1){
 	      ((Videogame*) database[a])->display();
 	    }
@@ -213,8 +246,39 @@ int main()
 	if(!searchMatch){
 	  cout << "No matches found." << endl;
 	}
+	//Confirm that the user wants to delete these items
+	else{
+	  fill(confirmDel, confirmDel + 81, ' ');
+	  cout << endl << "Do you wish to delete these items? (y or n): ";
+	  cin.getline(confirmDel, 81);	  
+	  for(int i = 0; i < strlen(confirmDel); i++){
+	    confirmDel[i] = toupper(confirmDel[i]);
+	  }
+	  if(strcmp(confirmDel, "Y") == 0 || strcmp(confirmDel, "YES") == 0){
+	    for(int del = 0; del < delCount; del++){
+	      for(int a = 0; a < database.size(); a++){
+		if(strcmp(input, database[a]->getYear()) == 0){
+		  if(database[a]->getId() == 1){
+		    delete ((Videogame*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  else if(database[a]->getId() == 2){
+		    delete ((Music*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  else if(database[a]->getId() == 3){
+		    delete ((Movie*) database[a]);
+		    database.erase(database.begin()+a);
+		  }
+		  break;
+		}
+	      }
+	    }
+	  }
+	}
 	searchMatch = false;
-	cout << endl << "-----End of Search-----" << endl << endl;
+	delCount = 0;
+	cout << endl << "-----End of Delete-----" << endl << endl;
       }
       
     }
@@ -230,7 +294,7 @@ void addVideogame(vector<Media*>* database){
   char publisherInput[81];
   char ratingInput[81];
   char yearInput[81];
-  cout << endl << "-----ADDING VIDEOGAME-----" << endl;
+  cout << endl << "-----Adding Videogame-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   videogame->setTitle(titleInput);
@@ -245,7 +309,7 @@ void addVideogame(vector<Media*>* database){
   videogame->setYear(yearInput);
   videogame->setId(1);
   database->push_back(videogame);
-  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
+  cout << "-----Added Successfully-----" << endl << endl;
 }
 
 //Prompts user for music class variables
@@ -256,7 +320,7 @@ void addMusic(vector<Media*>* database){
   char durationInput[81];
   char publisherInput[81];
   char yearInput[81];
-  cout << endl << "-----ADDING MUSIC-----" << endl;
+  cout << endl << "-----Adding Music-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   music->setTitle(titleInput);
@@ -274,7 +338,7 @@ void addMusic(vector<Media*>* database){
   music->setYear(yearInput);
   music->setId(2);
   database->push_back(music);
-  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
+  cout << "-----Added Successfully-----" << endl << endl;
 }
 
 //Prompts user for movie class variables
@@ -285,7 +349,7 @@ void addMovie(vector<Media*>* database){
   char durationInput[81];
   char ratingInput[81];
   char yearInput[81];
-  cout << endl << "-----ADDING MOVIE-----" << endl;
+  cout << endl << "-----Adding Movie-----" << endl;
   cout << "Title: ";
   cin.getline(titleInput, 81);
   movie->setTitle(titleInput);
@@ -303,5 +367,5 @@ void addMovie(vector<Media*>* database){
   movie->setYear(yearInput);
   movie->setId(3);
   database->push_back(movie);
-  cout << "-----ADDED SUCCESSFULLY-----" << endl << endl;
+  cout << "-----Added Successfully-----" << endl << endl;
 }

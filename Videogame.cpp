@@ -13,7 +13,7 @@ Videogame::Videogame(){
 }
 
 Videogame::~Videogame() {
-  cout << "Videogame is being deleted" << endl;
+  cout << "Videogame deleted" << endl;
 }
 
 char* Videogame::getPublisher() {

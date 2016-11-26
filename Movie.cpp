@@ -12,6 +12,10 @@ Movie::Movie(){
   rating = new char[81];
 }
 
+Movie::~Movie(){
+  cout << "Movie deleted" << endl;
+}
+
 char* Movie::getDirector() {
   return director;
 }

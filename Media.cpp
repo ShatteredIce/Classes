@@ -13,6 +13,10 @@ Media::Media(){
   id = 0;
 }
 
+Media::~Media(){
+  cout << "Media deleted" << endl;
+}
+
 char* Media::getTitle() {
   return title;
 }

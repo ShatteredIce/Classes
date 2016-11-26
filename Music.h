@@ -8,6 +8,7 @@ using namespace std;
 class Music : public Media {
  public:
   Music();
+  ~Music();
   char* getPublisher();
   char* getDuration();
   char* getArtist();

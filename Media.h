@@ -11,6 +11,7 @@ using namespace std;
 class Media {
  public:
   Media();
+  ~Media();
   char* getTitle();
   char* getYear();
   void setTitle(char*);

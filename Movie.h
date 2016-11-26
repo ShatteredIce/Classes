@@ -8,6 +8,7 @@ using namespace std;
 class Movie : public Media {
  public:
   Movie();
+  ~Movie();
   char* getDirector();
   char* getDuration();
   char* getRating();

@@ -12,6 +12,10 @@ Music::Music(){
   artist = new char[81];
 }
 
+Music::~Music() {
+  cout << "Music deleted" << endl;
+}
+
 char* Music::getPublisher() {
   return publisher;
 }
