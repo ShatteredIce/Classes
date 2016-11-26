@@ -13,6 +13,9 @@ Music::Music(){
 }
 
 Music::~Music() {
+  delete publisher;
+  delete duration;
+  delete artist;
   cout << "Music deleted" << endl;
 }
 

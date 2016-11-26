@@ -13,6 +13,8 @@ Videogame::Videogame(){
 }
 
 Videogame::~Videogame() {
+  delete publisher;
+  delete rating;
   cout << "Videogame deleted" << endl;
 }
 

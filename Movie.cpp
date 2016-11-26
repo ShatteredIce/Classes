@@ -13,6 +13,9 @@ Movie::Movie(){
 }
 
 Movie::~Movie(){
+  delete director;
+  delete duration;
+  delete rating;
   cout << "Movie deleted" << endl;
 }
 

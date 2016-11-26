@@ -14,7 +14,8 @@ Media::Media(){
 }
 
 Media::~Media(){
-  cout << "Media deleted" << endl;
+  delete title;
+  delete year;
 }
 
 char* Media::getTitle() {
