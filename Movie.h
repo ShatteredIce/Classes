@@ -4,6 +4,8 @@
 using namespace std;
 
 //Header file for Movie.cpp
+//Child of Media class
+//Stores values: director, duration, and rating
 
 class Movie : public Media {
  public:

@@ -3,7 +3,9 @@
 
 using namespace std;
 
-//Header file for Videogame.cpp 
+//Header file for Videogame.cpp
+//Child of Media class
+//Stores values: publisher and rating
 
 class Videogame : public Media {
  public:

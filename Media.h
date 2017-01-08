@@ -7,6 +7,9 @@
 using namespace std;
 
 //Header file for Media.cpp 
+//Parent class for Videogame, Music, and Movie classes
+//Stores values: id, title, and year
+//Stores id as an integer and other values as char*'s
 
 class Media {
  public:
